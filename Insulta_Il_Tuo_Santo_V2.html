@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Generatore Cringe Santi</title>
+
+<style>
+* { box-sizing: border-box; }
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #8ec5fc, #e0c3fc);
+    margin: 0;
+    padding: 15px;
+}
+
+.box {
+    background: white;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    max-width: 600px;
+    margin: auto;
+    text-align: center;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    border: none;
+    border-radius: 10px;
+    background: #ff6b6b;
+    color: white;
+    cursor: pointer;
+    margin-top: 10px;
+    -webkit-tap-highlight-color: transparent;
+}
+
+#copyBtn {
+    background: #4CAF50;
+}
+
+#output {
+    margin-top: 25px;
+    font-size: 18px;
+    font-weight: bold;
+    word-break: break-word;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+    <h1>⚡ TIRA IL TUO SANTO ⚡</h1>
+	<p>Se hai poca fantasia per tirare un santo in questo momento, lascia che ci pensi io per te, clicca qui sotto e urla ad alta voce quello che leggi</p>
+    <button onclick="genera()">Genera</button>
+    <button id="copyBtn" onclick="copia()">Copia</button>
+    <div id="output"></div>
+</div>
+
+<!-- ✅ FIX AUDIO CORRETTO -->
+<audio id="sound" preload="auto" src="https://www.soundjay.com/button/beep-07.wav"></audio>
+
+<script>
+
+// 👇 LISTE IDENTICHE ALLE TUE (NON MODIFICATE)
+
+const santi = [
+    "San Francesco","San Giovanni","Sant'Antonio","Santa Teresa",
+    "San Pietro","San Paolo","Santa Lucia","San Michele",
+    "San Nicola","Santa Caterina","San Giuseppe","San Andrea",
+    "San Giacomo","San Bartolomeo","San Matteo","San Tommaso",
+    "San Filippo","San Simone","San Barnaba","San Lorenzo",
+    "San Sebastiano","San Rocco","San Marco","San Luca",
+    "San Giorgio","San Gregorio","San Benedetto","San Domenico",
+    "San Ignazio","San Carlo","San Luigi","San Vincenzo",
+    "San Alfonso","San Pio","San Gabriele","San Raffaele",
+    "San Emanuele","San Davide","San Daniele","San Elia",
+    "Santa Chiara","Santa Rita","Santa Agnese","Santa Cecilia",
+    "Santa Barbara","Santa Marta","Santa Elisabetta","Santa Monica",
+    "Santa Veronica","Santa Sofia","Santa Giulia","Santa Beatrice",
+    "Santa Paola","Santa Giovanna","Santa Laura","Santa Maria Maddalena",
+    "Santa Brigida","Santa Tecla","Santa Lucia","Santa Croce"
+];
+
+const frasi = [
+    "sei spazzatura compressa in formato umano",
+    "hai la dignità di un bidone rovesciato",
+    "sei il fondo raschiato male",
+    "puzzi di errore critico",
+    "sei un aborto di logica",
+    "hai la profondità di un tombino aperto",
+    "sei un concentrato di inutilità pura",
+    "fai sembrare il nulla una grande idea",
+    "sei il crash definitivo dell’evoluzione",
+    "hai meno valore di un file corrotto",
+    "sei immondizia che ha preso coscienza",
+    "se il vuoto potesse parlare sarebbe comunque più interessante",
+    "sei la definizione pratica di senza scopo",
+    "anche il silenzio ti eviterebbe",
+    "sei l’interruzione che nessuno voleva",
+    "sei il punto più basso senza bisogno di scavare",
+    "hai la consistenza mentale di un errore di battitura",
+    "sei l’ombra di qualcosa che già faceva schifo",
+    "hai l’energia di un sistema morto",
+    "sei il niente con più spazio occupato",
+    "sei un bug che ha deciso di esistere",
+    "hai la presenza scenica di una schermata blu",
+    "sei l’eco di qualcosa di inutile",
+    "sei il frutto di un test fallito",
+    "hai la qualità di un segnale perso",
+    "sei l’errore che appare anche offline",
+    "se fossi un dato saresti scartato",
+    "sei il risultato senza senso in un calcolo sbagliato",
+    "hai la solidità di una scusa inventata",
+    "sei la versione peggiore del peggio",
+    "scarto puro",
+    "zero assoluto",
+    "errore vivente",
+    "inutile oltre misura",
+    "vuoto rumoroso",
+    "crash ambulante",
+    "contenuto assente",
+    "spreco tecnico",
+    "nullità operativa",
+    "difetto permanente",
+    "sei inutile ma almeno sei costante",
+    "hai il carisma di un errore di sistema",
+    "esisti senza motivo apparente",
+    "hai meno impatto di un messaggio ignorato",
+    "sei un aggiornamento rimandato all'infinito",
+    "sei spazzatura compressa",
+    "sei il crash dell'evoluzione",
+    "hai la profondità di un tombino",
+    "sei un errore critico ambulante",
+    "hai il valore di un file corrotto",
+    "sei il vuoto con più peso",
+    "sei un bug senza fix",
+    "sei il nulla che occupa spazio",
+    "sei l'errore definitivo",
+    "sei un fallimento senza appello",
+    "sei la manifestazione del niente",
+    "sei il risultato peggiore possibile",
+    "hai la consistenza di un bug irrisolto",
+    "sei un difetto strutturale",
+    "sei uno spreco di spazio esistenziale",
+    "sei il fallback quando tutto va male",
+    "sei un glitch permanente",
+    "sei il rumore di fondo della realtà",
+    "sei un test fallito",
+    "sei un output senza input",
+    "hai l'utilità di un warning ignorato",
+    "sei il contenuto nullo con troppo volume",
+    "sei il grado zero dell'efficacia",
+    "sei il crash dopo il crash",
+    "sei una presenza non necessaria",
+    "sei il bug introdotto dalla patch",
+    "sei il nulla che insiste"
+];
+
+function genera() {
+    const santo = santi[Math.floor(Math.random() * santi.length)];
+    const frase = frasi[Math.floor(Math.random() * frasi.length)];
+    const testo = santo + " " + frase;
+
+    document.getElementById("output").innerText = testo;
+
+    try {
+        document.getElementById("sound").play();
+    } catch(e) {}
+
+    if (navigator.vibrate) navigator.vibrate(50);
+}
+
+function copia() {
+    const testo = document.getElementById("output").innerText;
+    if (!testo) return;
+
+    navigator.clipboard?.writeText(testo);
+
+    alert("Copiato!");
+}
+</script>
+
+</body>
+</html>
