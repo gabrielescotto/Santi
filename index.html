@@ -9,20 +9,24 @@
 * { box-sizing: border-box; }
 
 body {
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #8ec5fc, #e0c3fc);
+    font-family: 'Arial Black', Arial, sans-serif;
+    background: radial-gradient(circle at center, #1a0000, #000000 80%);
     margin: 0;
     padding: 15px;
+    color: #fff;
 }
 
 .box {
-    background: white;
+    background: linear-gradient(145deg, #0a0a0a, #1a1a1a);
     padding: 20px;
     border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+    box-shadow: 
+        0 0 20px rgba(255, 0, 0, 0.6),
+        inset 0 0 15px rgba(255, 0, 0, 0.3);
     max-width: 600px;
     margin: auto;
     text-align: center;
+    border: 1px solid rgba(255, 0, 0, 0.4);
 }
 
 button {
@@ -31,22 +35,58 @@ button {
     font-size: 18px;
     border: none;
     border-radius: 10px;
-    background: #ff6b6b;
+    background: linear-gradient(145deg, #800000, #ff0000);
     color: white;
     cursor: pointer;
     margin-top: 10px;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
     -webkit-tap-highlight-color: transparent;
+
+    box-shadow: 
+        0 0 10px rgba(255, 0, 0, 0.7),
+        inset 0 0 5px rgba(0,0,0,0.8);
+
+    transition: all 0.2s ease;
+}
+
+button:hover {
+    transform: scale(1.05);
+    box-shadow: 
+        0 0 20px rgba(255, 0, 0, 1),
+        0 0 40px rgba(255, 0, 0, 0.5);
+}
+
+button:active {
+    transform: scale(0.97);
+    box-shadow: 
+        inset 0 0 10px rgba(0,0,0,1),
+        0 0 5px rgba(255,0,0,0.5);
 }
 
 #copyBtn {
-    background: #4CAF50;
+    background: linear-gradient(145deg, #003300, #00cc00);
+    box-shadow: 
+        0 0 10px rgba(0, 255, 0, 0.6),
+        inset 0 0 5px rgba(0,0,0,0.8);
+}
+
+#copyBtn:hover {
+    box-shadow: 
+        0 0 20px rgba(0, 255, 0, 1),
+        0 0 40px rgba(0, 255, 0, 0.5);
 }
 
 #output {
     margin-top: 25px;
-    font-size: 18px;
+    font-size: 20px;
     font-weight: bold;
     word-break: break-word;
+    color: #ff3b3b;
+    text-shadow: 
+        0 0 5px rgba(255, 0, 0, 0.8),
+        0 0 15px rgba(255, 0, 0, 0.5);
 }
 </style>
 </head>
@@ -105,70 +145,15 @@ const santi = [
     "Horus",
     "Anubi",
     "Seth",
-    "Thoth",
-    "Bastet",
-    "Hathor",
-    "Sekhmet",
-    "Anu",
-    "Enlil",
-    "Enki",
-    "Inanna",
-    "Marduk",
-    "Tiamat",
-    "Nergal",
-    "Ereshkigal",
-    "Shamash",
-    "Nabu",
-    "Brahma",
-    "Vishnu",
-    "Shiva",
-    "Lakshmi",
-    "Saraswati",
-    "Durga",
-    "Kali",
-    "Ganesha",
-    "Hanuman",
-    "Indra",
-    "Yu Huang",
-    "Guanyin",
-    "Nezha",
-    "Sun Wukong",
-    "Chang’e",
-    "Amaterasu",
-    "Susanoo",
-    "Tsukuyomi",
-    "Inari",
-    "Raijin",
-    "Quetzalcoatl",
-    "Tezcatlipoca",
-    "Huitzilopochtli",
-    "Tlaloc",
-    "Xipe Totec",
-    "Tonatiuh",
-    "Xochiquetzal",
-    "Mictlantecuhtli",
-    "Coatlicue",
-    "Chalchiuhtlicue",
-    "Kukulkan",
-    "Itzamna",
-    "Chaac",
-    "Ix Chel",
-    "Ah Puch",
-    "Lugh",
-    "Dagda",
-    "Morrigan",
-    "Brigid",
-    "Cernunnos",
-    "Perun",
-    "Veles",
     "Ogun",
     "Shango",
-    "Maui",
-    "Pele",
-    "Inti",
-    "Viracocha",
-    "Ahura Mazda",
-    "Mithra"
+    "Mithra",
+	"Dio",
+	"Madonna",
+	"San Giuseppe",
+	"Allah",
+	"Mosè",
+	"Noè"
 ];
 
 const frasi = [
@@ -267,7 +252,13 @@ const frasi = [
     "errore evidente",
     "rovina evidente",
     "fallimento evidente",
-    "inutile conclamato"
+    "inutile conclamato",
+	"merda",
+	"schifo",
+	"inutile",
+	"deficiente",
+	"devi prendere fuoco",
+	"sarebbe stato meglio se non fossi mai esistito",
 ];
 
 function genera() {
